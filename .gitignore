@@ -1,0 +1,22 @@
+# Ignore virtual environment
+virtual/
+venv/
+.env/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Django database
+db.sqlite3
+
+# Ignore static and media files
+/static/
+media/
+
+# Ignore IDE or system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
