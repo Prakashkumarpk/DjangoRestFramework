@@ -31,7 +31,6 @@ class Task(models.Model):
     description = models.TextField()
 
 
-
 class RankSheet(models.Model):
 
     tamil=models.IntegerField()
