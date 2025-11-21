@@ -13,17 +13,22 @@ class StudentAPI(APIView):
     def get(self, request):
         all_students = Student.objects.all()
 
-        student_list = []
+    #----------------------------Manual method without serializers-------------------------------
+        # student_list = []
 
-        for s in all_students:
-            student_dict = {
-                "id":s.id,
-                "name":s.name,
-                "age": s.age
-            }
+        # for s in all_students:
+        #     student_dict = {
+        #         "id":s.id,
+        #         "name":s.name,
+        #         "age": s.age
+        #     }
 
-            student_list.append(student_dict)
-        return Response(student_list)
+        #     student_list.append(student_dict)
+        # return Response(student_list)
+
+    #----------------------------Using Serializers-----------------------------------------------
+        student_data=Student_Serializer(all_students, many =True).data
+        return Response(student_data)
 
     def post(self, request):
         print(request.data)
@@ -64,12 +69,12 @@ class TaskView(APIView):
 
         if task_id == None:
             new_task= Task.objects.all()
-            task_data = Task_Serializer(new_task, many=True).data
+            task_data = Task_Data_Serializer(new_task, many=True).data
             return Response(task_data) 
         
         else:
             task = Task.objects.get(id = task_id)
-            task_data = Task_Serializer(task).data
+            task_data = Task_Data_Serializer(task).data
             return Response(task_data)
     
 

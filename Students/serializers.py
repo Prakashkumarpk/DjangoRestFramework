@@ -1,8 +1,22 @@
 from rest_framework.serializers import ModelSerializer
 from .models import *
 
+class Student_Serializer(ModelSerializer):
+    class Meta:
+        model = Student
+        fields = "__all__"
+
 
 class Task_Serializer(ModelSerializer):
+
+    class Meta:
+
+        model = Task
+        fields = "__all__"
+
+class Task_Data_Serializer(ModelSerializer):
+
+    student_ref = Student_Serializer()
 
     class Meta:
 
