@@ -14,6 +14,15 @@ class Task_Serializer(ModelSerializer):
         model = Task
         fields = "__all__"
 
+class Student_Task_Serializer(ModelSerializer):
+
+    all_tasks = Task_Serializer(many=True)
+
+    class Meta:
+
+        model=Student
+        fields="__all__"
+
 class Task_Data_Serializer(ModelSerializer):
 
     student_ref = Student_Serializer()

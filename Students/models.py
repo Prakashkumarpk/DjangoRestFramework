@@ -26,7 +26,7 @@ class Student(models.Model):
 
 class Task(models.Model):
 
-    student_ref = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
+    student_ref = models.ForeignKey(Student, related_name="all_tasks", null=True, on_delete=models.CASCADE)
     task_name = models.CharField(max_length=200)
     description = models.TextField()
 

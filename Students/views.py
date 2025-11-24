@@ -27,7 +27,7 @@ class StudentAPI(APIView):
         # return Response(student_list)
 
     #----------------------------Using Serializers-----------------------------------------------
-        student_data=Student_Serializer(all_students, many =True).data
+        student_data=Student_Task_Serializer(all_students, many =True).data
         return Response(student_data)
 
     def post(self, request):
@@ -79,15 +79,28 @@ class TaskView(APIView):
     
 
     def post(self, request):
-        new_task = Task_Serializer(data = request.data)
 
-        if new_task.is_valid():
-            new_task.save()
+#------------------------------Using Serializer-----------------------------
+        # new_task = Task_Serializer(data = request.data)
 
-            return Response("New Task Added")
-        else:
+        # if new_task.is_valid():
+        #     new_task.save()
 
-            return Response(new_task.errors)
+        #     return Response("New Task Added")
+        # else:
+
+        #     return Response(new_task.errors)
+
+#------------------------------Without Using Serializer-----------------------------
+
+        new_task = Task(
+            student_ref_id = request.data['student_ref'],
+            task_name = request.data['task_name'],
+            description = request.data['description']
+        )
+
+        new_task.save()
+        return Response("New Task Created")
     
     def patch(self, request, task_id):
 
